@@ -7,12 +7,43 @@
 	<link rel="stylesheet" href="css/foundation.css"/>
 	<link rel="stylesheet" href="css/app.css"/>
 	<script src="js/vendor/modernizr.js"></script>
+	<script type="text/javascript">
+		var viewModel = {
+			frequency: {
+				daily: {},
+				bidaily: {},
+				weekly:{},
+			},
+			general_segments:[
+				{id:"gather", name:"Gather data"},
+				{id:"choose_problem", name:"Pick one problem"},
+				{id:"roots", name:"Find root causes"},
+				{id:"choose_root", name:"Pick one root cause"},
+				{id:"known_solution", name:"Experiment or habit change?"},
+			],
+			experiment_segments:[
+				{id:"solutions", name:"Generate solutions"},
+				{id:"choose_solution", name:"Pick one solution"},
+				{id:"define_experiment", name:"Define experiment"},
+				{id:"experiment", name:"Run experiment"},
+				{id:"results", name:"Analyze results"},
+			],
+			habit_change_segments:[
+				{id:"solution", name:"Agree to solution"},
+				{id:"define_change", name:"Define habit change"},
+				{id:"change_habit", name:"Change the habit"},
+				{id:"results", name:"Analyze results"},
+			],
+			activities: [],
+		};
+	</script>
 </head>
 <body>
 
 <div class="row">
 	<div class="large-12 columns">
-		<h1>Retrospectives</h1>
+		<h1>Change one thing</h1>
+
 		<p>What is your experiment cycle time?</p>
 		<input type="radio" name="experiment_cycle_time" value="daily" id="ect_daily"><label for="ect_daily">1-day</label>
 		<input type="radio" name="experiment_cycle_time" value="bidaily" id="ect_bidaily"><label for="ect_bidaily">2-day</label>
@@ -22,9 +53,13 @@
 
 <div class="row">
 	<div class="medium-8 column">
-		<h2>One Process Change</h2>
 		<section><h2>Gather Data</h2></section>
-		<section><h2>Pick a problem</h2></section>
+		<section>
+			<h2>Pick a problem</h2>
+			<p>Activity: <select name="choose_problem_activity"><option value="cluster">Cluster and dot vote</option><option value="common_cause">Find common cause</option></select> </p>
+			<p><label for="key_problem">Key problem:</label><input id="key_problem"></p>
+			<p><label for="measure_effect">Measure &ndash; how you know it's fixed:</label><input id="measure_effect"></p>
+		</section>
 		<section><h2>Root Cause</h2></section>
 		<section><h2>Pick Roots</h2></section>
 		<section><h2>Solution Ideation</h2></section>
@@ -50,11 +85,13 @@
 </div>
 
 <script src="js/vendor/jquery.js"></script>
+<script src="js/vendor/knockout-3.3.0.js"></script>
 <script src="js/foundation.min.js" type="text/javascript"></script>
 <script src="js/foundation/foundation.reveal.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		$(document).foundation();
+		ko.applyBindings(viewModel);
 	});
 </script>
 
