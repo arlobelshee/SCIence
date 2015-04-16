@@ -8,46 +8,127 @@
 	<link rel="stylesheet" href="css/app.css"/>
 	<script src="js/vendor/modernizr.js"></script>
 	<script type="text/javascript">
-		var viewModel = {
-			frequency: {
-				daily: {},
-				bidaily: {},
-				weekly:{},
-			},
-			general_segments:[
-				{id:"gather", name:"Gather data"},
-				{id:"choose_problem", name:"Pick one problem"},
-				{id:"roots", name:"Find root causes"},
-				{id:"choose_root", name:"Pick one root cause"},
-				{id:"known_solution", name:"Experiment or habit change?"},
-			],
-			experiment_segments:[
-				{id:"solutions", name:"Generate solutions"},
-				{id:"choose_solution", name:"Pick one solution"},
-				{id:"define_experiment", name:"Define experiment"},
-				{id:"experiment", name:"Run experiment"},
-				{id:"results", name:"Analyze results"},
-			],
-			habit_change_segments:[
-				{id:"solution", name:"Agree to solution"},
-				{id:"define_change", name:"Define habit change"},
-				{id:"change_habit", name:"Change the habit"},
-				{id:"results", name:"Analyze results"},
-			],
-			activities: [],
+		var bindView = function bindView(ko) {
+			var viewModel = {
+				frequency: "bidaily",
+				frequencies: [
+					{
+						id: "daily",
+						text: "1 day",
+						segment_options: [
+							{id: "gather", duration: "5 min"},
+							{id: "choose_problem", duration: "3 min"},
+							{id: "roots", duration: "5 min"},
+							{id: "choose_root", duration: "3 min"},
+							{id: "solutions", duration: "3 min"},
+							{id: "choose_solution", duration: "6 min"},
+							{id: "define_experiment", duration: "5 min"},
+							{id: "experiment", duration: "1 day"},
+							{id: "agree_solution", duration: "2 min"},
+							{id: "define_change", duration: "5 min"},
+							{id: "change_habit", duration: "1 day"},
+							{id: "results", duration: "3 min"}
+						]
+					},
+					{
+						id: "bidaily",
+						text: "2 days",
+						segment_options: [
+							{id: "gather", duration: "10 min"},
+							{id: "choose_problem", duration: "5 min"},
+							{id: "roots", duration: "10 min"},
+							{id: "choose_root", duration: "3 min"},
+							{id: "solutions", duration: "10 min"},
+							{id: "choose_solution", duration: "5 min"},
+							{id: "define_experiment", duration: "5 min"},
+							{id: "experiment", duration: "2 days"},
+							{id: "agree_solution", duration: "5 min"},
+							{id: "define_change", duration: "10 min"},
+							{id: "change_habit", duration: "2 days"},
+							{id: "results", duration: "3 min"}
+						]
+					},
+					{
+						id: "weekly",
+						text: "1 week",
+						segment_options: [
+							{id: "gather", duration: "25 min"},
+							{id: "choose_problem", duration: "10 min"},
+							{id: "roots", duration: "20 min"},
+							{id: "choose_root", duration: "5 min"},
+							{id: "solutions", duration: "20 min"},
+							{id: "choose_solution", duration: "10 min"},
+							{id: "define_experiment", duration: "5 min"},
+							{id: "experiment", duration: "1 week"},
+							{id: "agree_solution", duration: "10 min"},
+							{id: "define_change", duration: "10 min"},
+							{id: "change_habit", duration: "1 week"},
+							{id: "results", duration: "3 min"}
+						]
+					},
+					{
+						id: "longer",
+						text: "too damn long",
+						segment_options: [
+							{id: "gather", duration: "45 min"},
+							{id: "choose_problem", duration: "15 min"},
+							{id: "roots", duration: "30 min"},
+							{id: "action_items", duration: "5 min"},
+							{id: "do_work", duration: "2 days"},
+							{id: "results", duration: "3 min"}
+						]
+					}
+				],
+				general_segments: [
+					{id: "gather", name: "Gather data"},
+					{id: "choose_problem", name: "Pick one problem"},
+					{id: "roots", name: "Find root causes"},
+					{id: "choose_root", name: "Pick one root cause"},
+					{id: "pick_style", name: "Experiment or habit change?"}
+				],
+				experiment_segments: [
+					{id: "solutions", name: "Generate solutions"},
+					{id: "choose_solution", name: "Pick one solution"},
+					{id: "define_experiment", name: "Define experiment"},
+					{id: "experiment", name: "Run experiment"},
+					{id: "results", name: "Analyze results"}
+				],
+				habit_change_segments: [
+					{id: "agree_solution", name: "Agree to solution"},
+					{id: "define_change", name: "Define habit change"},
+					{id: "change_habit", name: "Change the habit"},
+					{id: "results", name: "Analyze results"}
+				],
+				catchup_segments: [
+					{id: "action_items", name: "Pick action items"},
+					{id: "do_work", name: "Complete action items"},
+					{id: "results", name: "Analyze results"}
+				]
+			};
+			viewModel.frequency = ko.observable(viewModel.frequency);
+			var frequency_map = {};
+			for (var i = 0; i < viewModel.frequencies.length; ++i) {
+				frequency_map[viewModel.frequencies[i].id] = viewModel.frequencies[i];
+			}
+			ko.retro_structure = ko.pureComputed(function () {
+				return frequency_map[viewModel.frequency()];
+			});
+			ko.applyBindings(viewModel);
 		};
 	</script>
 </head>
 <body>
 
+
 <div class="row">
 	<div class="large-12 columns">
 		<h1>Change one thing</h1>
 
-		<p>What is your experiment cycle time?</p>
-		<input type="radio" name="experiment_cycle_time" value="daily" id="ect_daily"><label for="ect_daily">1-day</label>
-		<input type="radio" name="experiment_cycle_time" value="bidaily" id="ect_bidaily"><label for="ect_bidaily">2-day</label>
-		<input type="radio" name="experiment_cycle_time" value="weekly" id="ect_weekly"><label for="ect_weekly">1-week</label>
+		<p>How long since your last retro?
+			<!-- ko foreach: frequencies -->
+			<input type="radio" name="experiment_cycle_time" data-bind="value: id, attr: {id: 'ect__'+id}"><label data-bind="attr: {for: 'ect__'+id}, text:text">duration</label>
+			<!-- /ko -->
+		</p>
 	</div>
 </div>
 
@@ -56,8 +137,13 @@
 		<section><h2>Gather Data</h2></section>
 		<section>
 			<h2>Pick a problem</h2>
-			<p>Activity: <select name="choose_problem_activity"><option value="cluster">Cluster and dot vote</option><option value="common_cause">Find common cause</option></select> </p>
+
+			<p>Activity: <select name="choose_problem_activity">
+				<option value="cluster">Cluster and dot vote</option>
+				<option value="common_cause">Find common cause</option>
+			</select></p>
 			<p><label for="key_problem">Key problem:</label><input id="key_problem"></p>
+
 			<p><label for="measure_effect">Measure &ndash; how you know it's fixed:</label><input id="measure_effect"></p>
 		</section>
 		<section><h2>Root Cause</h2></section>
@@ -91,7 +177,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		$(document).foundation();
-		ko.applyBindings(viewModel);
+		bindView(ko);
 	});
 </script>
 
