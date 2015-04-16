@@ -123,9 +123,12 @@
 					segment.activities = acts;
 				}
 			}
-			viewModel.retro_structure = ko.computed(function () {
-				return frequency_map[viewModel.frequency()];
-			});
+			viewModel.retro_structure = ko.observable(null);
+			var updateStructure = function updateStructure() {
+				viewModel.retro_structure(frequency_map[viewModel.frequency()]);
+			};
+			updateStructure();
+			viewModel.frequency.subscribe(updateStructure);
 			ko.applyBindings(viewModel);
 		};
 	</script>
@@ -139,7 +142,7 @@
 
 		<p>How long since your last retrospective?
 			<!-- ko foreach: frequencies -->
-			<input type="radio" name="experiment_cycle_time" data-bind="value: id, attr: {id: 'ect__'+id}"><label data-bind="attr: {for: 'ect__'+id}, text:text">duration</label>
+			<input type="radio" name="experiment_cycle_time" data-bind="checked: $root.frequency, value: id, attr: {id: 'ect__'+id}"><label data-bind="attr: {for: 'ect__'+id}, text:text">duration</label>
 			<!-- /ko -->
 		</p>
 	</div>
