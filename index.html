@@ -16,101 +16,114 @@
 						id: "daily",
 						text: "1 day",
 						segment_options: [
-							{id: "gather", duration: "5 min"},
-							{id: "choose_problem", duration: "3 min"},
-							{id: "roots", duration: "5 min"},
-							{id: "choose_root", duration: "3 min"},
-							{id: "solutions", duration: "3 min"},
-							{id: "choose_solution", duration: "6 min"},
-							{id: "define_experiment", duration: "5 min"},
-							{id: "experiment", duration: "1 day"},
-							{id: "agree_solution", duration: "2 min"},
-							{id: "define_change", duration: "5 min"},
-							{id: "change_habit", duration: "1 day"},
-							{id: "results", duration: "3 min"}
+							{id: "gather", duration: "5 min", activities: []},
+							{id: "choose_problem", duration: "3 min", activities: []},
+							{id: "roots", duration: "5 min", activities: []},
+							{id: "choose_root", duration: "3 min", activities: []},
+							{id: "solutions", duration: "3 min", activities: []},
+							{id: "choose_solution", duration: "6 min", activities: []},
+							{id: "define_experiment", duration: "5 min", activities: []},
+							{id: "experiment", duration: "1 day", activities: []},
+							{id: "results_experiment", duration: "3 min", activities: []},
+							{id: "agree_solution", duration: "2 min", activities: []},
+							{id: "define_change", duration: "5 min", activities: []},
+							{id: "change_habit", duration: "1 day", activities: []},
+							{id: "results_habit", duration: "3 min", activities: []}
 						]
 					},
 					{
 						id: "bidaily",
 						text: "2 days",
 						segment_options: [
-							{id: "gather", duration: "10 min"},
-							{id: "choose_problem", duration: "5 min"},
-							{id: "roots", duration: "10 min"},
-							{id: "choose_root", duration: "3 min"},
-							{id: "solutions", duration: "10 min"},
-							{id: "choose_solution", duration: "5 min"},
-							{id: "define_experiment", duration: "5 min"},
-							{id: "experiment", duration: "2 days"},
-							{id: "agree_solution", duration: "5 min"},
-							{id: "define_change", duration: "10 min"},
-							{id: "change_habit", duration: "2 days"},
-							{id: "results", duration: "3 min"}
+							{id: "gather", duration: "10 min", activities: []},
+							{id: "choose_problem", duration: "5 min", activities: ["cluster_and_dot", "combine"]},
+							{id: "roots", duration: "10 min", activities: []},
+							{id: "choose_root", duration: "3 min", activities: []},
+							{id: "solutions", duration: "10 min", activities: []},
+							{id: "choose_solution", duration: "5 min", activities: []},
+							{id: "define_experiment", duration: "5 min", activities: []},
+							{id: "experiment", duration: "2 days", activities: []},
+							{id: "results_experiment", duration: "3 min", activities: []},
+							{id: "agree_solution", duration: "5 min", activities: []},
+							{id: "define_change", duration: "10 min", activities: []},
+							{id: "change_habit", duration: "2 days", activities: []},
+							{id: "results_habit", duration: "3 min", activities: []}
 						]
 					},
 					{
 						id: "weekly",
 						text: "1 week",
 						segment_options: [
-							{id: "gather", duration: "25 min"},
-							{id: "choose_problem", duration: "10 min"},
-							{id: "roots", duration: "20 min"},
-							{id: "choose_root", duration: "5 min"},
-							{id: "solutions", duration: "20 min"},
-							{id: "choose_solution", duration: "10 min"},
-							{id: "define_experiment", duration: "5 min"},
-							{id: "experiment", duration: "1 week"},
-							{id: "agree_solution", duration: "10 min"},
-							{id: "define_change", duration: "10 min"},
-							{id: "change_habit", duration: "1 week"},
-							{id: "results", duration: "3 min"}
+							{id: "gather", duration: "25 min", activities: []},
+							{id: "choose_problem", duration: "10 min", activities: []},
+							{id: "roots", duration: "20 min", activities: []},
+							{id: "choose_root", duration: "5 min", activities: []},
+							{id: "solutions", duration: "20 min", activities: []},
+							{id: "choose_solution", duration: "10 min", activities: []},
+							{id: "define_experiment", duration: "5 min", activities: []},
+							{id: "experiment", duration: "1 week", activities: []},
+							{id: "results_experiment", duration: "3 min", activities: []},
+							{id: "agree_solution", duration: "10 min", activities: []},
+							{id: "define_change", duration: "10 min", activities: []},
+							{id: "change_habit", duration: "1 week", activities: []},
+							{id: "results_habit", duration: "3 min", activities: []}
 						]
 					},
 					{
 						id: "longer",
 						text: "too damn long",
 						segment_options: [
-							{id: "gather", duration: "45 min"},
-							{id: "choose_problem", duration: "15 min"},
-							{id: "roots", duration: "30 min"},
-							{id: "action_items", duration: "5 min"},
-							{id: "do_work", duration: "2 days"},
-							{id: "results", duration: "3 min"}
+							{id: "gather", duration: "45 min", activities: []},
+							{id: "choose_problem", duration: "15 min", activities: []},
+							{id: "roots", duration: "30 min", activities: []},
+							{id: "action_items", duration: "5 min", activities: []},
+							{id: "do_work", duration: "2 days", activities: []},
+							{id: "results_action", duration: "3 min", activities: []}
 						]
 					}
 				],
-				general_segments: [
-					{id: "gather", name: "Gather data"},
-					{id: "choose_problem", name: "Pick one problem"},
-					{id: "roots", name: "Find root causes"},
-					{id: "choose_root", name: "Pick one root cause"},
-					{id: "pick_style", name: "Experiment or habit change?"}
-				],
-				experiment_segments: [
-					{id: "solutions", name: "Generate solutions"},
-					{id: "choose_solution", name: "Pick one solution"},
-					{id: "define_experiment", name: "Define experiment"},
-					{id: "experiment", name: "Run experiment"},
-					{id: "results", name: "Analyze results"}
-				],
-				habit_change_segments: [
-					{id: "agree_solution", name: "Agree to solution"},
-					{id: "define_change", name: "Define habit change"},
-					{id: "change_habit", name: "Change the habit"},
-					{id: "results", name: "Analyze results"}
-				],
-				catchup_segments: [
-					{id: "action_items", name: "Pick action items"},
-					{id: "do_work", name: "Complete action items"},
-					{id: "results", name: "Analyze results"}
-				]
+				segments: {
+					gather: {name: "Gather data"},
+					choose_problem: {name: "Pick one problem"},
+					roots: {name: "Find root causes"},
+					choose_root: {name: "Pick one root cause"},
+					pick_style: {name: "Experiment or habit change?"},
+					solutions: {name: "Generate solutions"},
+					choose_solution: {name: "Pick one solution"},
+					define_experiment: {name: "Define experiment"},
+					experiment: {name: "Run experiment"},
+					results_experiment: {name: "Analyze results"},
+					agree_solution: {name: "Agree to solution"},
+					define_change: {name: "Define habit change"},
+					change_habit: {name: "Change the habit"},
+					results_habit: {name: "Analyze results"},
+					action_items: {name: "Pick action items"},
+					do_work: {name: "Complete action items"},
+					results_action: {name: "Analyze results"}
+				},
+				activities: {
+					cluster_and_dot: {title: "Cluster and dot vote", uri: ""},
+					combine: {title: "Combine top ideas", uri: ""}
+				}
 			};
 			viewModel.frequency = ko.observable(viewModel.frequency);
 			var frequency_map = {};
 			for (var i = 0; i < viewModel.frequencies.length; ++i) {
-				frequency_map[viewModel.frequencies[i].id] = viewModel.frequencies[i];
+				var freq = viewModel.frequencies[i];
+				frequency_map[freq.id] = freq;
+				for (var j = 0; j < freq.segment_options.length; ++j) {
+					var segment = freq.segment_options[j];
+					freq[segment.id] = segment;
+					var acts = [];
+					for (var k = 0; k < segment.activities.length; ++k) {
+						var act = segment.activities[k];
+						viewModel.activities[act].id = act;
+						acts.push(viewModel.activities[act]);
+					}
+					segment.activities = acts;
+				}
 			}
-			ko.retro_structure = ko.pureComputed(function () {
+			viewModel.retro_structure = ko.computed(function () {
 				return frequency_map[viewModel.frequency()];
 			});
 			ko.applyBindings(viewModel);
@@ -124,7 +137,7 @@
 	<div class="large-12 columns">
 		<h1>Change one thing</h1>
 
-		<p>How long since your last retro?
+		<p>How long since your last retrospective?
 			<!-- ko foreach: frequencies -->
 			<input type="radio" name="experiment_cycle_time" data-bind="value: id, attr: {id: 'ect__'+id}"><label data-bind="attr: {for: 'ect__'+id}, text:text">duration</label>
 			<!-- /ko -->
@@ -134,38 +147,77 @@
 
 <div class="row">
 	<div class="medium-8 column">
-		<section><h2>Gather Data</h2></section>
-		<section>
-			<h2>Pick a problem</h2>
+		<section data-bind="with: retro_structure().gather"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
 
-			<p>Activity: <select name="choose_problem_activity">
-				<option value="cluster">Cluster and dot vote</option>
-				<option value="common_cause">Find common cause</option>
-			</select></p>
+			<p>Activity (<span data-bind="text: duration"></span> ):
+				<select name="gather_data_activity" data-bind="foreach: activities">
+					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
+				</select></p>
+		</section>
+		<section data-bind="with: retro_structure().choose_problem"><h2 data-bind="text: $parent.segments[id].name">Pick a problem</h2>
+
+			<p>Activity (<span data-bind="text: duration"></span> ):
+				<select name="choose_problem_activity" data-bind="foreach: activities">
+					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
+				</select></p>
 			<p><label for="key_problem">Key problem:</label><input id="key_problem"></p>
 
 			<p><label for="measure_effect">Measure &ndash; how you know it's fixed:</label><input id="measure_effect"></p>
 		</section>
-		<section><h2>Root Cause</h2></section>
-		<section><h2>Pick Roots</h2></section>
-		<section><h2>Solution Ideation</h2></section>
-		<section><h2>Pick One Solution</h2></section>
-		<section><h2>Define Experiment</h2></section>
-		<section><h2>Collect Experiment Data</h2></section>
-		<section><h2>Review Experiment</h2></section>
+		<section data-bind="with: retro_structure().roots"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+
+			<p>Activity (<span data-bind="text: duration"></span> ):
+				<select name="gather_data_activity" data-bind="foreach: activities">
+					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
+				</select></p>
+		</section>
+		<section data-bind="with: retro_structure().choose_root"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+
+			<p>Activity (<span data-bind="text: duration"></span> ):
+				<select name="gather_data_activity" data-bind="foreach: activities">
+					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
+				</select></p>
+		</section>
+		<section data-bind="with: retro_structure().solutions"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+
+			<p>Activity (<span data-bind="text: duration"></span> ):
+				<select name="gather_data_activity" data-bind="foreach: activities">
+					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
+				</select></p>
+		</section>
+		<section data-bind="with: retro_structure().choose_solution"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+
+			<p>Activity (<span data-bind="text: duration"></span> ):
+				<select name="gather_data_activity" data-bind="foreach: activities">
+					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
+				</select></p>
+		</section>
+		<section data-bind="with: retro_structure().define_experiment"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+
+			<p>Activity (<span data-bind="text: duration"></span> ):
+				<select name="gather_data_activity" data-bind="foreach: activities">
+					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
+				</select></p>
+		</section>
+		<section data-bind="with: retro_structure().experiment"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+
+			<p>Activity (<span data-bind="text: duration"></span> ):
+				<select name="gather_data_activity" data-bind="foreach: activities">
+					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
+				</select></p>
+		</section>
+		<section data-bind="with: retro_structure().results_experiment"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+
+			<p>Activity (<span data-bind="text: duration"></span> ):
+				<select name="gather_data_activity" data-bind="foreach: activities">
+					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
+				</select></p>
+		</section>
 
 	</div>
 	<div class="medium-4 column panel">
-		<ul class="side-nav nav-extra">
-			<li>Gather Data <span class="duration">10 min</span></li>
-			<li>Pick a problem <span class="duration">5 min</span></li>
-			<li>Root Cause <span class="duration">10 min</span></li>
-			<li>Pick Roots <span class="duration">3 min</span></li>
-			<li>Solution Ideation <span class="duration">10 min</span></li>
-			<li>Pick One Solution <span class="duration">5 min</span></li>
-			<li>Define Experiment <span class="duration">5 min</span></li>
-			<li>Collect Experiment Data <span class="duration">2 days</span></li>
-			<li>Review Experiment <span class="duration">3 min</span></li>
+		<ul class="side-nav nav-extra" data-bind="foreach: retro_structure().segment_options">
+			<li><span data-bind="text: $parent.segments[id].name">Gather Data</span> <span class="duration" data-bind="text: '(' + duration + ')'">(10 min)</span></li>
 		</ul>
 	</div>
 </div>
