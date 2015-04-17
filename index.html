@@ -7,6 +7,16 @@
 	<link rel="stylesheet" href="css/foundation.css"/>
 	<link rel="stylesheet" href="css/app.css"/>
 	<script src="js/vendor/modernizr.js"></script>
+	<script src="js/vendor/jquery.js"></script>
+	<script src="js/vendor/knockout-3.3.0.js"></script>
+	<script src="js/foundation.min.js" type="text/javascript"></script>
+	<script src="js/foundation/foundation.reveal.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$(document).foundation();
+			bindView(ko);
+		});
+	</script>
 	<script type="text/javascript">
 		var bindView = function bindView(ko) {
 			var viewModel = {
@@ -84,9 +94,9 @@
 				],
 				segments: {
 					gather: {name: "Gather data"},
-					choose_problem: {name: "Pick one problem"},
-					roots: {name: "Find root causes"},
-					choose_root: {name: "Pick one root cause"},
+					choose_problem: {name: "Pick one improvement goal"},
+					roots: {name: "Find contributing factors"},
+					choose_root: {name: "Pick one contributing factor"},
 					pick_style: {name: "Experiment or habit change?"},
 					solutions: {name: "Generate solutions"},
 					choose_solution: {name: "Pick one solution"},
@@ -106,13 +116,21 @@
 					combine: {title: "Combine top ideas", uri: ""}
 				}
 			};
+			ko.components.register('segment', {
+				template: {element: 'retro_segment_template'},
+				viewModel: function (params) {
+					this.segment = params.segment;
+					this.root = params.root;
+				}
+			});
 			viewModel.frequency = ko.observable(viewModel.frequency);
 			var frequency_map = {};
 			for (var i = 0; i < viewModel.frequencies.length; ++i) {
 				var freq = viewModel.frequencies[i];
+				freq.segment_options = ko.observable(freq.segment_options);
 				frequency_map[freq.id] = freq;
-				for (var j = 0; j < freq.segment_options.length; ++j) {
-					var segment = freq.segment_options[j];
+				for (var j = 0; j < freq.segment_options().length; ++j) {
+					var segment = freq.segment_options()[j];
 					freq[segment.id] = segment;
 					var acts = [];
 					for (var k = 0; k < segment.activities.length; ++k) {
@@ -134,7 +152,9 @@
 	</script>
 </head>
 <body>
-
+<script>
+	document.createElement('segment');
+</script>
 
 <div class="row">
 	<div class="large-12 columns">
@@ -142,7 +162,7 @@
 
 		<p>How long since your last retrospective?
 			<!-- ko foreach: frequencies -->
-			<input type="radio" name="experiment_cycle_time" data-bind="checked: $root.frequency, value: id, attr: {id: 'ect__'+id}"><label data-bind="attr: {for: 'ect__'+id}, text:text">duration</label>
+			<input type="radio" name="experiment_cycle_time" data-bind="checked: $root.frequency, value: id, attr: {id: 'ect__'+id}" id="ect__"><label data-bind="attr: {for: 'ect__'+id}, text:text" for="ect__">duration</label>
 			<!-- /ko -->
 		</p>
 	</div>
@@ -150,91 +170,77 @@
 
 <div class="row">
 	<div class="medium-8 column">
-		<section data-bind="with: retro_structure().gather"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+		<segment params="segment: retro_structure().gather, root: $root">
+		</segment>
 
-			<p>Activity (<span data-bind="text: duration"></span> ):
-				<select name="gather_data_activity" data-bind="foreach: activities">
-					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
-				</select></p>
-		</section>
-		<section data-bind="with: retro_structure().choose_problem"><h2 data-bind="text: $parent.segments[id].name">Pick a problem</h2>
-
-			<p>Activity (<span data-bind="text: duration"></span> ):
-				<select name="choose_problem_activity" data-bind="foreach: activities">
-					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
-				</select></p>
+		<segment params="segment: retro_structure().choose_problem, root: $root">
 			<p><label for="key_problem">Key problem:</label><input id="key_problem"></p>
 
 			<p><label for="measure_effect">Measure &ndash; how you know it's fixed:</label><input id="measure_effect"></p>
-		</section>
-		<section data-bind="with: retro_structure().roots"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+		</segment>
 
-			<p>Activity (<span data-bind="text: duration"></span> ):
-				<select name="gather_data_activity" data-bind="foreach: activities">
-					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
-				</select></p>
-		</section>
-		<section data-bind="with: retro_structure().choose_root"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+		<segment params="segment: retro_structure().roots, root: $root">
+		</segment>
 
-			<p>Activity (<span data-bind="text: duration"></span> ):
-				<select name="gather_data_activity" data-bind="foreach: activities">
-					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
-				</select></p>
-		</section>
-		<section data-bind="with: retro_structure().solutions"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
 
-			<p>Activity (<span data-bind="text: duration"></span> ):
-				<select name="gather_data_activity" data-bind="foreach: activities">
-					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
-				</select></p>
-		</section>
-		<section data-bind="with: retro_structure().choose_solution"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+		<segment params="segment: retro_structure().choose_root, root: $root">
+		</segment>
 
-			<p>Activity (<span data-bind="text: duration"></span> ):
-				<select name="gather_data_activity" data-bind="foreach: activities">
-					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
-				</select></p>
-		</section>
-		<section data-bind="with: retro_structure().define_experiment"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+		<segment params="segment: retro_structure().solutions, root: $root">
+		</segment>
 
-			<p>Activity (<span data-bind="text: duration"></span> ):
-				<select name="gather_data_activity" data-bind="foreach: activities">
-					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
-				</select></p>
-		</section>
-		<section data-bind="with: retro_structure().experiment"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+		<segment params="segment: retro_structure().choose_solution, root: $root">
+		</segment>
 
-			<p>Activity (<span data-bind="text: duration"></span> ):
-				<select name="gather_data_activity" data-bind="foreach: activities">
-					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
-				</select></p>
-		</section>
-		<section data-bind="with: retro_structure().results_experiment"><h2 data-bind="text: $parent.segments[id].name">Gather Data</h2>
+		<segment params="segment: retro_structure().define_experiment, root: $root">
+		</segment>
 
-			<p>Activity (<span data-bind="text: duration"></span> ):
-				<select name="gather_data_activity" data-bind="foreach: activities">
-					<option data-bind="value: id, text: title" value="cluster">Cluster and dot vote</option>
-				</select></p>
-		</section>
+		<segment params="segment: retro_structure().experiment, root: $root">
+		</segment>
 
+		<segment params="segment: retro_structure().results_experiment, root: $root">
+		</segment>
+
+		<segment params="segment: retro_structure().agree_solution, root: $root">
+		</segment>
+
+		<segment params="segment: retro_structure().define_change, root: $root">
+		</segment>
+
+		<segment params="segment: retro_structure().change_habit, root: $root">
+		</segment>
+
+		<segment params="segment: retro_structure().results_habit, root: $root">
+		</segment>
+
+		<segment params="segment: retro_structure().action_items, root: $root">
+		</segment>
+
+		<segment params="segment: retro_structure().do_work, root: $root">
+		</segment>
+
+		<segment params="segment: retro_structure().results_action, root: $root">
+		</segment>
 	</div>
 	<div class="medium-4 column panel">
 		<ul class="side-nav nav-extra" data-bind="foreach: retro_structure().segment_options">
-			<li><span data-bind="text: $parent.segments[id].name">Gather Data</span> <span class="duration" data-bind="text: '(' + duration + ')'">(10 min)</span></li>
+			<li><span data-bind="text: $parent.segments[id].name">Segment name</span> <span class="duration" data-bind="text: '(' + duration + ')'">(?? min)</span></li>
 		</ul>
 	</div>
 </div>
 
-<script src="js/vendor/jquery.js"></script>
-<script src="js/vendor/knockout-3.3.0.js"></script>
-<script src="js/foundation.min.js" type="text/javascript"></script>
-<script src="js/foundation/foundation.reveal.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function () {
-		$(document).foundation();
-		bindView(ko);
-	});
-</script>
+<template id="retro_segment_template">
+	<section data-bind="if: segment()">
+		<h2 data-bind="text: root.segments[segment().id].name">Segment name</h2>
 
+		<p><label data-bind="attr: {for: 'activities__' + segment().id}" for="some__activity">Activity
+			<span data-bind="text: '(' + segment().duration + ')'" class="duration">(?? min)</span>:</label>
+			<select id="some__activity" name="activity_for_something"
+			        data-bind="foreach: segment().activities, attr: {id: 'activities__' + segment().id, name: 'activity_for_' + segment().id}">
+				<option data-bind="value: id, text: title" value="cluster">Activity name</option>
+			</select></p>
+		<!-- ko template: { nodes: $componentTemplateNodes, data: segment } --><!-- /ko -->
+	</section>
+</template>
 </body>
 </html>
