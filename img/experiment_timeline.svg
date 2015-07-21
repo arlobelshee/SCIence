@@ -56,10 +56,10 @@
     <line x1="460" y1="120" x2="460" y2="260" style="fill:none;stroke-width:2;stroke:rgb(0,0,0);stroke-dasharray:2,5;" />
   </g>
   <g opacity="1">
-    <line x1="760" y1="120" x2="760" y2="260" style="fill:none;stroke-width:2;stroke:rgb(0,0,0);stroke-dasharray:2,5;" />
+    <line x1="760" y1="120" x2="760" y2="200" style="fill:none;stroke-width:2;stroke:rgb(0,0,0);stroke-dasharray:2,5;" />
   </g>
   <g opacity="1">
-    <line x1="840" y1="60" x2="840" y2="260" style="fill:none;stroke-width:2;stroke:rgb(0,0,0);stroke-dasharray:2,5;" />
+    <line x1="840" y1="60" x2="840" y2="200" style="fill:none;stroke-width:2;stroke:rgb(0,0,0);stroke-dasharray:2,5;" />
   </g>
   <g transform="matrix(0,1,-1,0,80,240)">
     <g opacity="1">
@@ -77,22 +77,22 @@
       <line x1="38.9195" y1="40" x2="65.7947" y2="-7.3466" style="fill:none;stroke-width:1;stroke:rgb(0,0,0);" />
     </g>
   </g>
-  <g transform="matrix(0,1,-1,0,840,240)">
+  <g transform="matrix(0,1,-1,0,840,180)">
     <g opacity="1">
       <g style="fill:rgb(255,255,255);stroke-width:1;stroke:rgb(0,0,0);">
         <path d="M 14.2191,0 Q 26.5693,0 26.5693,20 Q 26.5693,40 38.9195,40 Q 26.5693,40 26.5693,60 Q 26.5693,80 14.2191,80" style="fill:none" />
       </g>
-      <line x1="38.9195" y1="40" x2="78.8575" y2="211.4322" style="fill:none;stroke-width:1;stroke:rgb(0,0,0);" />
+      <line x1="38.9195" y1="40" x2="141.7978" y2="219.3846" style="fill:none;stroke-width:1;stroke:rgb(0,0,0);" />
     </g>
   </g>
-  <g transform="matrix(1,0,0,1,500,200)">
+  <g transform="matrix(1,0,0,1,800,300)">
     <g opacity="1">
       <rect x="0" y="0" width="240" height="40" style="fill:rgb(218,218,218);stroke-width:1;stroke:rgb(0,0,0);" rx="0" ry="0" />
       <rect style="fill:rgb(0,0,0);fill-opacity:0;stroke-width:0;stroke-opacity:0;stroke:rgb(0,0,0);" x="10.9383" y="6.0367" width="218.1233" height="27.9267" />
       <text y="29.0743" font-family="Verdana" font-size="21.3333" fill="rgb(0,0,0)" x="120" text-anchor="middle">Necessary overhead</text>
     </g>
   </g>
-  <g transform="matrix(1,0,0,1,500,140)">
+  <g transform="matrix(1,0,0,1,800,240)">
     <g opacity="1">
       <rect x="0" y="0" width="240" height="40" style="fill:rgb(194,234,255);stroke-width:1;stroke:rgb(0,0,0);" rx="0" ry="0" />
       <rect style="fill:rgb(0,0,0);fill-opacity:0;stroke-width:0;stroke-opacity:0;stroke:rgb(0,0,0);" x="42.8167" y="6.0367" width="154.3667" height="27.9267" />
