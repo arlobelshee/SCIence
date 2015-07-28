@@ -1,5 +1,7 @@
 # aurelia-skeleton-navigation
 
+[![Join the chat at https://gitter.im/arlobelshee/SCIence](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/arlobelshee/SCIence?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![ZenHub](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://zenhub.io)
 [![Join the chat at https://gitter.im/aurelia/discuss](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aurelia/discuss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
